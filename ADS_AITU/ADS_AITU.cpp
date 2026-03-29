@@ -16,7 +16,8 @@ int square_sum(int n)
 }   // We call our function n times, so the Big O = O(n)
 
 int sum_first_n_element_of_array(const vector<int>& arr, int l)
-{
+{   
+    // Base case
     if (l == 0) {
         return arr[0];
     }
@@ -24,6 +25,7 @@ int sum_first_n_element_of_array(const vector<int>& arr, int l)
     int sum_before = sum_first_n_element_of_array(arr, l - 1);
 
     return arr[l] + sum_before;
+    // Time complexity 0(n)
 }
 
 int power_sum(int b, int n)
@@ -38,11 +40,20 @@ int power_sum(int b, int n)
 
     cout << "+" << b << "^" << n;
 
-    return pow(b, n) + total_before;
+    return (int)pow(b, n) + total_before;
+    // Time complexity O(n)
 }
 
-void return_arr(vector<int> arr, int l) {
+void return_sequence(int n) {
+    if (n == 0) {
+        return;
+    }
 
+    int x;
+    cin >> x;
+    return_sequence(n - 1);
+    cout << x << " ";
+    // Time complexity O(n)
 }
 
 int main()
@@ -63,19 +74,20 @@ int main()
         cin >> arr[i];
     }
 
-    for (int i = 0; i < size_of_array; i++) {
-        cout << arr[i];
-    }
-    cout << endl;
+    cout << "Enter for which index we should add: ";
+    cin >> n;
+    cout << sum_first_n_element_of_array(arr, n) << endl;
 
-    int sum_to_k;
-    cin >> sum_to_k;
-    cout << sum_first_n_element_of_array(arr, sum_to_k - 1);
-
+    
+	// Third Task
     int b, k;
     cout << "Enter b and k: ";
     cin >> b >> k;
-    cout << '=' << power_sum(b, k);
+    cout << '=' << power_sum(b, k) << endl;
 
-
+    // Fourth task
+    cout << "Enter the sequence size: ";
+    cin >> n;
+    return_sequence(n);
+    cout << endl;
 }
